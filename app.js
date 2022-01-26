@@ -4,9 +4,9 @@ let age2 = age;
 console.log(age, age2);
 age = 200;
 console.log(age, age2);
-// the original values goes in, if you change the value later,
-// it won't affect you old variable
-// this also goes for booleans and strings
+// ** the original values goes in, if you change the value later,
+// ** it won't affect you old variable
+// ** this also goes for booleans and strings
 console.clear()
 
 // Let's say we have an array
@@ -15,11 +15,13 @@ const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 // and we want to make a copy of it.
 const team = players;
 console.log(players, team);
-// Team is just a reference to the original array, not a a copy
+// ** Team is just a reference to the original array, not a a copy
 
 // You might think we can just do something like this:
 team[3] = 'Renato';
 console.log(players, team);
+// ** if you update an array, it will always reference back
+// ** need to make an actual copy of the array
 
 // however what happens when we update that array?
 
@@ -29,7 +31,12 @@ console.log(players, team);
 
 // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
+
 // So, how do we fix this? We take a copy instead!
+const team2 = players.slice();
+// const team3 = [].concat(players); ** Works the same as above
+// ** if we pass nothing to slice(), it will copy the original array its referencing.
+console.log(team2);
 
 // one way
 
