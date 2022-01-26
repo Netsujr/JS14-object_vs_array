@@ -7,7 +7,7 @@ console.log(age, age2);
 // ** the original values goes in, if you change the value later,
 // ** it won't affect you old variable
 // ** this also goes for booleans and strings
-console.clear()
+// console.clear();
 
 // Let's say we have an array
 const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
@@ -34,30 +34,58 @@ console.log(players, team);
 
 // So, how do we fix this? We take a copy instead!
 const team2 = players.slice();
-// const team3 = [].concat(players); ** Works the same as above
 // ** if we pass nothing to slice(), it will copy the original array its referencing.
 console.log(team2);
 
 // one way
 
 // or create a new array and concat the old one in
+const team3 = [].concat(players);
+// ** Works the same as above
 
 // or use the new ES6 Spread
+const team4 = [...players];
+// ** takes every item of original and put it into new array, doesnt change original
+const team5 = Array.from(players) // creates an array from (passed_array)
 
 // now when we update it, the original one isn't changed
 
 // The same thing goes for objects, let's say we have a person object
-
+// console.clear();
 // with Objects
 const person = {
-  name: 'Wes Bos',
-  age: 80
+  name: 'Renato Delboni',
+  age: 29
 };
 
 // and think we make a copy:
+const captain = person;
+// captain.age = 99;
+console.log(person);
+console.log(captain);
+// ** cannot copy like this, original object also changes.
 
 // how do we take a copy instead?
+const captain2 = Object.assign({}, person, { age: 99});
+// ** create empty object
+// ** take everything from original object
+// ** change attributes you wish to update
+console.log(captain2);
+
 
 // We will hopefully soon see the object ...spread
+const captain3 = {...person};
+// **  this is an object spead.
+
+// ** ** ** spead/copy is shallow, it does not go into objects within objects
+// ** it only goes for 1 level. find a function called "CloneDeep" to clone all levels.
+
+// CHEAT CODE
+const dev2 = JSON.parse(JSON.stringify(captain));
+// ** turns it into a string, then immediately turn it is back into an object,
+// ** poor mans way around the solution (performance issues);
+
+
+console.log(captain3);
 
 // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
